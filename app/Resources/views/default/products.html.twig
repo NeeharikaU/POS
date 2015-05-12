@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+	    <table class="table table-condensed table-hover table-striped">
+ 			<thead>
+ 				<tr>
+	 				<th>ProductID</th>
+	 				<th>Name</th>
+	 				<th>Category</th>
+	 				<th>Unit Price</th>
+	 				<th>Quantity</th>
+	 				<th>Actions</th>
+ 				</tr>
+ 			</thead>
+ 			{% for product in products %}
+ 			<tr>
+ 				<td>{{ product.id }}</td>
+ 				<td>{{ product.name }}</td>
+ 				<td>{{ product.category }}</td>
+ 				<td>{{ product.price }}</td>
+ 				<td>{{ product.quantity }}</td>
+ 				<td></td>>
+ 			</tr>
+ 			{% endfor %}
+		</table>	
+    </div>
+{% endblock %}
