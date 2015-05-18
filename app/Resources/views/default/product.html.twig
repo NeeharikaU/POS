@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+    	<div class="row">
+			<div class="col-xs-4 button-group">
+				<button class="btn btn-sm btn-danger" id="deleteProduct">Delete</button>
+				<button class="btn btn-sm btn-primary" id="bulkProductEdit">Bulk Edit</button>
+				<button class="btn btn-sm btn-primary" id="generateBarcode">Generate Barcode</button>
+			</div>
+			<div class="col-xs-4 button-group-right">
+				<form class="form-inline search-bar">
+					<div class="form-group">
+			        	<input type="text" class="form-control" placeholder="Search">
+			        </div>
+			        <button type="submit" class="btn btn-default">Submit</button>
+			    </form>
+			</div>
+			<div class="col-xs-4 button-group-right">
+				<button class="btn btn-sm btn-primary" id="addProduct">Add New Product</button>
+				<button class="btn btn-sm btn-primary" id="importCSV">Import Product CSV</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+			    <table class="table table-condensed table-hover table-striped item-row">
+		 			<thead>
+		 				<tr>
+			 				<th>ProductID</th>
+			 				<th>Name</th>
+			 				<th>Category</th>
+			 				<th>Unit Price</th>
+			 				<th>Quantity</th>
+			 				<th>Actions</th>
+		 				</tr>
+		 			</thead>
+		 			{% for product in products %}
+		 			<tr>
+		 				<td>{{ product.id }}</td>
+		 				<td>{{ product.name }}</td>
+		 				<td>{{ product.category }}</td>
+		 				<td>{{ product.price }}</td>
+		 				<td>{{ product.quantity }}</td>
+		 				<td></td>
+		 			</tr>
+		 			{% endfor %}
+				</table>	
+			</div>
+		</div>
+    </div>
+{% endblock %}
