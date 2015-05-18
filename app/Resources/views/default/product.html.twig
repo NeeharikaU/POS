@@ -5,6 +5,7 @@
     <div class="container">
     	<div class="row">
 			<div class="col-xs-4 button-group">
+				<i class="fa fa-level-down fa-flip-horizontal table-arrow"></i>
 				<button class="btn btn-sm btn-danger" id="deleteProduct">Delete</button>
 				<button class="btn btn-sm btn-primary" id="bulkProductEdit">Bulk Edit</button>
 				<button class="btn btn-sm btn-primary" id="generateBarcode">Generate Barcode</button>
@@ -24,9 +25,10 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
-			    <table class="table table-condensed table-hover table-striped item-row">
+			    <table class="table table-condensed table-hover table-striped item-table">
 		 			<thead>
 		 				<tr>
+		 					<th><input type="checkbox" class="item-table-checkbox"></th>
 			 				<th>ProductID</th>
 			 				<th>Name</th>
 			 				<th>Category</th>
@@ -37,12 +39,15 @@
 		 			</thead>
 		 			{% for product in products %}
 		 			<tr>
+		 				<td><input type="checkbox" class="item-row-checkbox">
 		 				<td>{{ product.id }}</td>
 		 				<td>{{ product.name }}</td>
 		 				<td>{{ product.category }}</td>
 		 				<td>{{ product.price }}</td>
 		 				<td>{{ product.quantity }}</td>
-		 				<td></td>
+		 				<td>
+	 						<a href="#" class="edit-row">edit</a>
+	 					</td>
 		 			</tr>
 		 			{% endfor %}
 				</table>	
