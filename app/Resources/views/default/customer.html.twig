@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-4 button-group">
+				<button class="btn btn-sm btn-danger" id="deleteCustomer">Delete</button>
+				<button class="btn btn-sm btn-primary" id="emailCustomer">Email</button>
+			</div>
+			<div class="col-xs-4 button-group-right">
+				<form class="form-inline search-bar">
+					<div class="form-group">
+			        	<input type="text" class="form-control" placeholder="Search">
+			        </div>
+			        <button type="submit" class="btn btn-default">Submit</button>
+			    </form>
+			</div>
+			<div class="col-xs-4 button-group-right">				
+				<button class="btn btn-sm btn-primary" id="addCustomer">Add New Customer</button>
+				<button class="btn btn-sm btn-primary" id="importCSV">Import Customer CSV</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+		    <table class="table table-condensed table-hover table-striped item-table">
+	 			<thead>
+	 				<tr>
+	 					<th><i class="fa fa-level-down fa-flip-horizontal"></i>
+		 				<th>CustomerID</th>
+		 				<th>First Name</th>
+		 				<th>Last Name</th>
+		 				<th>Email</th>
+		 				<th>Phone Number</th>
+		 				<th>Taxable</th>
+		 				<th>Deleted</th>
+		 				<th></th>
+	 				</tr>
+	 			</thead>
+	 			<tbody>
+	 			{% for customer in Customers %}
+	 			<tr>
+	 				<td><input type="checkbox" class="item-row-checkbox">
+	 				<td>{{ customer.id }}</td>
+	 				<td>{{ customer.firstName }}</td>
+	 				<td>{{ customer.lastName }}</td>
+	 				<td>{{ customer.email }}</td>
+	 				<td>{{ customer.phoneNumber }}</td>
+	 				<td>{{ customer.taxable }}</td>
+	 				<td>{{ customer.deleted }}</td>
+	 				<td>
+	 					<a href="#" class="edit-row">edit</a>
+	 				</td>
+	 			</tr>
+	 			{% endfor %}
+	 			</tbody>
+			</table>
+			</div>	
+		</div>
+    </div>
+{% endblock %}

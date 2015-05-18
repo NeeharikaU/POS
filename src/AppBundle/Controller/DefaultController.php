@@ -21,7 +21,7 @@ class DefaultController extends Controller
      */
     public function productAction()
     {
-    	return $this->render('default/products.html.twig', array('products' => array(
+    	return $this->render('default/product.html.twig', array('products' => array(
     			array(
     			'id' => 1234950305,
     			'name' => "dslkjkffkflsflflf",
@@ -38,4 +38,8 @@ class DefaultController extends Controller
     			)
     	)));
     }
+    
+    
+    
+    
 }
