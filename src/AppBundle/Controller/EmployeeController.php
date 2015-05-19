@@ -7,24 +7,26 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use AppBundle\Entity\Customer;
 use AppBundle\Entity\Address;
+use AppBundle\Entity\Employee;
 
-class CustomerController extends Controller
+class EmployeeController extends Controller
 {
 	/**
-	 * @Route("/customer")
+	 * @Route("/employee")
 	 * @Method("POST")
 	 * @param Request $request
 	 */
 	public function createAction(Request $request)
 	{
-		$customer = new Customer();
+		$employee = new Employee();
 		$firstName = $request->get('firstName');
 		$lastName = $request->get('lastName');
 		$email = $request->get('email');
 		$phone = $request->get('phoneNumber');
-		$taxable = $request->get('taxable');
+		$employeeID = $request->get('employeeID');
+		$username = $request->get('username');
+		$password = md5($request->get('password'));
 		$street = $request->get('street');
 		$street2 = $request->get('street2');
 		$city = $request->get('city');
@@ -32,11 +34,13 @@ class CustomerController extends Controller
 		$zip = $request->get('zip');
 		
 		$em = $this->getDoctrine()->getEntityManager();
-		$customer->setFirstName($firstName);
-		$customer->setLastName($lastName);
-		$customer->setEmail($email);
-		$customer->setPhoneNumber($phone);
-		$customer->setTaxable($taxable);
+		$employee->setFirstName($firstName);
+		$employee->setLastName($lastName);
+		$employee->setEmail($email);
+		$employee->setPhoneNumber($phone);
+		$employee->setUsername($username);
+		$employee->setPassword($password);
+		$employee->setEmployeeID($employeeID);
 		
 		$address = new Address();
 		$address->setStreet($street);
@@ -47,44 +51,44 @@ class CustomerController extends Controller
 		$address->setCountry('USA');
 		$em->persist($address);
 		$em->flush($address);
-		$customer->setAddress($address);
-		$em->persist($customer);
+		$employee->setAddress($address);
+		$em->persist($employee);
 		$em->flush();
 		
-		$request->getSession()->getFlashBag()->add('success', 'Customer successfully added');
-		return new JsonResponse(array('success' => 'Customer successfully added'));
+		$request->getSession()->getFlashBag()->add('success', 'Employee successfully added.');		
+		return new JsonResponse(array('success' => 'Employee successfully added.'));		
 	}
 	
 	
 	/**
-	 * @Route("/customer/{id}")
+	 * @Route("/employee/{id}")
 	 * @Method("DELETE")
 	 */
 	public function deleteAction($id, Request $request)
 	{
-		return $this->render('default/customer.html.twig');
+		return $this->render('default/employee.html.twig');
 	}
 	
 	/**
 	 * 
-	 * @Route("/customer")
+	 * @Route("/employee")
 	 * @Method("GET")
 	 */
 	public function indexAction() 
 	{
 		$em = $this->getDoctrine()->getEntityManager();
-		$customers = $em->getRepository('AppBundle\Entity\Customer')->findAll();
+		$employees = $em->getRepository('AppBundle\Entity\Employee')->findAll();
 		
-		return $this->render('default/customer.html.twig', array('Customers' => $customers));
+		return $this->render('default/employee.html.twig', array('Employees' => $employees));
 	}
 	
 	/**
-	 * @Route("/customer/{id}")
+	 * @Route("/employee/{id}")
 	 * @Method("PUT")
 	 */
 	public function updateAction($id, Request $request)
 	{
-		return $this->render('default/customer.html.twig');
+		return $this->render('default/employee.html.twig');
 	}
 	
 }

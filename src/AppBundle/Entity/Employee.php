@@ -105,6 +105,11 @@ class Employee extends Person
 		return $this->employeeID;
 	}
 	
+	public function setEmployeeID($employeeID)
+	{
+		$this->employeeID = $employeeID;
+	}
+	
 	/**
 	 * 
 	 * @return string
@@ -112,6 +117,16 @@ class Employee extends Person
 	public function getUsername()
 	{
 		return $this->username;
+	}
+	
+	public function setUsername($username)
+	{
+		$this->username = $username;
+	}
+	
+	public function setPassword($password)
+	{
+		$this->password = $password;
 	}
 	
 	/**
@@ -132,9 +147,19 @@ class Employee extends Person
 		return $this->lastName;
 	}
 	
+	public function setLastName($lastName)
+	{
+		$this->lastName = $lastName;
+	}
+	
 	public function getFirstName()
 	{
 		return $this->firstName;
+	}
+	
+	public function setFirstName($firstName)
+	{
+		$this->firstName = $firstName;
 	}
 	
 	public function getEmail()
@@ -142,14 +167,32 @@ class Employee extends Person
 		return $this->email;
 	}
 	
+	public function setEmail($email) {
+		$this->email = $email;
+	}
+	
 	public function getPhoneNumber()
 	{
 		return $this->phoneNumber;
 	}
 	
+	public function setPhoneNumber($phone)
+	{
+		$this->phoneNumber = $phone;
+	}
 
 	public function isDeleted()
 	{
 		return $this->deleted;
+	}
+	
+	public function delete()
+	{
+		$this->deleted = true;
+	}
+	
+	public function restore()
+	{
+		$this->deleted = false;
 	}
 }

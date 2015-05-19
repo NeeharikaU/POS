@@ -8,13 +8,12 @@ var Backend = new function()
 			url: url,
 			data: data,
 			method: method,
-			dataType: 'json',
 			success: callback,
-			error: function() {
-				alert('An error occured');
+			error: function(xhr, status, message) {
+				alert(message);
 			}
 		})
-	}
+	};
 	
 	return this;
 };
