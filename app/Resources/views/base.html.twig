@@ -43,14 +43,20 @@
 		</nav>
         
         {% endblock %}
-        {% for key,flashMessage in app.session.flashbag.all() %}
-        	{% for msg in flashMessage %}
-		    <div class="alert alert-{{key}} alert-dismissible" role="alert">
-			  	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				{{ msg }}
+        
+		
+		{% block flash %}
+			<div class="flash">				
+				{% for type, messages in app.session.flashBag.all %}
+				    {% for message in messages %}
+				    	<div class="alert alert-{{type}} alert-dismissible fade in" role="alert">
+						  	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						  	<p>{{message | raw}}</p>
+						</div>				      
+				    {% endfor %}
+				{% endfor %}
 			</div>
-			{% endfor %}
-		 {% endfor %}
+		{% endblock %}
         
         {% block body %}{% endblock %}
         
@@ -64,6 +70,7 @@
         	<script src="{{ asset('js/twig.min.js') }}"></script>
         	<script src="{{ asset('js/Backend.js') }}"></script>
         	<script src="{{ asset('js/Customer.js') }}"></script>
+        	<script src="{{ asset('js/Employee.js') }}"></script>
         	<script src="{{ asset('js/Main.js') }}"></script>       	
         {% endblock %}
     </body>

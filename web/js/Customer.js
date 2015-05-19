@@ -61,8 +61,9 @@ var Customer = function()
 		}
 				
 		var promise = Backend.call('/customer', 'POST', data);		
-		promise.done(function(data) {
-			alert('done');
+		promise.done(function(data, status, xhr) {
+			$('.modal').modal('toggle');
+			location.reload();
 		});
 		
 	};
